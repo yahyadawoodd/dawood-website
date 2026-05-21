@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dawood Industrial Fasteners Private Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#c0150f;--red-h:#e8201a;--red-dim:rgba(192,21,15,.1);
+  --white:#fff;--off:#f6f6f6;
+  --text:#1a1a1a;--muted:#666;--border:#e0e0e0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:var(--white);border-bottom:3px solid var(--red);box-shadow:0 2px 18px rgba(0,0,0,.07)}
+.logo-area{display:flex;align-items:center;gap:.85rem;cursor:pointer}
+.logo-mark{width:46px;height:46px;background:var(--red);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:32px;height:32px}
+.logo-name strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em;color:var(--red);line-height:1}
+.logo-name span{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav a{text-decoration:none;color:var(--muted);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;cursor:pointer}
+nav a:hover{color:var(--red)}
+.nav-btn{background:var(--red)!important;color:var(--white)!important;padding:.48rem 1.3rem;border-radius:2px}
+.nav-btn:hover{background:var(--red-h)!important}
+
+/* PAGE SYSTEM */
+.page{display:none;min-height:100vh;padding-top:68px}
+.page.active{display:block}
+
+/* ===================== HOME PAGE ===================== */
+/* HERO */
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:55% 45%;align-items:center;padding:4rem 3.5rem;position:relative;overflow:hidden}
+.hero-panel{position:absolute;top:0;right:0;width:44%;height:100%;background:var(--off);clip-path:polygon(10% 0,100% 0,100% 100%,0 100%);z-index:0}
+.hero-panel-bar{position:absolute;top:0;right:0;width:44%;height:4px;background:var(--red);z-index:1}
+.hero-content{position:relative;z-index:2;animation:up .8s ease both}
+.eyebrow{display:flex;align-items:center;gap:.7rem;font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:1.3rem}
+.eyebrow::before{content:'';width:34px;height:2px;background:var(--red)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,7vw,6rem);line-height:.93;letter-spacing:.02em;margin-bottom:1.5rem;color:var(--text)}
+h1 .r{color:var(--red)}
+.hero-desc{font-size:.96rem;line-height:1.85;color:var(--muted);max-width:460px;font-weight:300;margin-bottom:2.3rem}
+.btns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;padding:.82rem 1.9rem;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.btn-r{background:var(--red);color:var(--white)}.btn-r:hover{background:var(--red-h);transform:translateY(-2px);box-shadow:0 6px 20px rgba(192,21,15,.28)}
+.btn-o{background:transparent;color:var(--text);border:2px solid var(--border)}.btn-o:hover{border-color:var(--red);color:var(--red)}
+.hero-vis{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;animation:up .8s .18s ease both}
+.hero-vis svg{width:330px;height:330px;filter:drop-shadow(0 8px 30px rgba(192,21,15,.14))}
+
+/* STATS */
+.stats{background:var(--red);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.9rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.2)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.7rem;color:var(--white);line-height:1;letter-spacing:.04em}
+.stat-l{font-size:.67rem;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.16em;margin-top:.32rem}
+
+/* HOME SECTIONS */
+.home-section{padding:5rem 3.5rem}
+.tag{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:.85rem}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.3rem);letter-spacing:.03em;line-height:1.02;margin-bottom:.9rem;color:var(--text)}
+.sub{color:var(--muted);font-size:.91rem;line-height:1.8;font-weight:300;max-width:520px;margin-bottom:2.6rem}
+.hrule{height:1px;background:var(--border)}
+
+/* WHY */
+#why-section{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.tile-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tile{background:var(--off);border:1px solid var(--border);border-top:3px solid var(--red);padding:1.6rem;border-radius:2px;transition:box-shadow .3s,transform .3s}
+.tile:hover{box-shadow:0 8px 26px rgba(0,0,0,.07);transform:translateY(-3px)}
+.tile:nth-child(2),.tile:nth-child(4){margin-top:1.8rem}
+.tile-icon{font-size:1.6rem;margin-bottom:.7rem}
+.tile h4{font-family:'Bebas Neue',sans-serif;font-size:1.08rem;letter-spacing:.05em;margin-bottom:.3rem;color:var(--text)}
+.tile p{font-size:.77rem;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* INDUSTRIES */
+#ind-section{background:var(--off)}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
+.icard{background:var(--white);border:1px solid var(--border);border-bottom:3px solid var(--red);aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.icard:hover{box-shadow:0 8px 26px rgba(0,0,0,.09);transform:translateY(-4px)}
+.icard-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);font-size:4.8rem;opacity:.07;pointer-events:none}
+.icard h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.05em;color:var(--text)}
+.icard p{font-size:.74rem;color:var(--muted);margin-top:.22rem;font-weight:300}
+
+/* CONTACT */
+#contact-section{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.cform{display:flex;flex-direction:column;gap:.85rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{background:var(--off);border:1px solid var(--border);color:var(--text);padding:.78rem 1rem;font-family:'DM Sans',sans-serif;font-size:.87rem;outline:none;transition:border-color .2s;border-radius:2px;resize:vertical}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);background:var(--white)}
+.fg select option{background:var(--white)}
+.cinfo{display:flex;flex-direction:column;gap:1.7rem}
+.ci{display:flex;gap:1rem;align-items:flex-start}
+.ci-icon{width:44px;height:44px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border-radius:2px}
+.ci h4{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem}
+.ci p{font-size:.87rem;color:var(--muted);line-height:1.6}
+
+/* ===================== PRODUCTS PAGE ===================== */
+#products-page{background:var(--off)}
+.prod-hero{background:var(--red);padding:3.5rem 3.5rem 2.5rem;position:relative;overflow:hidden}
+.prod-hero::after{content:'PRODUCTS';position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:10rem;color:rgba(255,255,255,.07);line-height:1;pointer-events:none}
+.prod-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);color:var(--white);letter-spacing:.03em;line-height:1;margin-bottom:.6rem}
+.prod-hero p{color:rgba(255,255,255,.75);font-size:.92rem;font-weight:300;max-width:560px}
+
+/* Category tabs */
+.cat-tabs{display:flex;gap:0;background:var(--white);border-bottom:2px solid var(--border);overflow-x:auto;padding:0 3.5rem}
+.cat-tab{padding:1rem 1.6rem;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .2s,border-color .2s;font-family:'DM Sans',sans-serif}
+.cat-tab:hover{color:var(--red)}
+.cat-tab.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* Category panels */
+.cat-panel{display:none;padding:3rem 3.5rem}
+.cat-panel.active{display:block}
+.cat-panel-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;color:var(--text);margin-bottom:.4rem}
+.cat-panel-desc{color:var(--muted);font-size:.88rem;font-weight:300;margin-bottom:2rem;max-width:600px;line-height:1.7}
+
+/* Product table */
+.prod-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:3px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.prod-table thead{background:var(--red)}
+.prod-table thead th{color:var(--white);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.2rem;text-align:left}
+.prod-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+.prod-table tbody tr:last-child{border-bottom:none}
+.prod-table tbody tr:hover{background:rgba(192,21,15,.03)}
+.prod-table td{padding:.85rem 1.2rem;font-size:.86rem;color:var(--text)}
+.prod-table td:first-child{font-weight:500}
+.prod-table td .muted{color:var(--muted);font-size:.78rem;font-weight:300}
+.avail{display:inline-block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .6rem;border-radius:1px;border:1px solid rgba(192,21,15,.3);color:var(--red);background:rgba(192,21,15,.04)}
+
+/* Card grid for some categories */
+.prod-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.prod-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--red);padding:1.5rem;border-radius:2px;transition:box-shadow .2s,transform .2s}
+.prod-card:hover{box-shadow:0 6px 22px rgba(0,0,0,.08);transform:translateY(-2px)}
+.prod-card h4{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.04em;margin-bottom:.4rem}
+.prod-card p{font-size:.8rem;color:var(--muted);line-height:1.65;font-weight:300}
+.prod-card .specs{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.spec-tag{font-size:.65rem;background:var(--off);border:1px solid var(--border);padding:.2rem .55rem;border-radius:1px;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--text);padding:1.9rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.flogo{display:flex;align-items:center;gap:.75rem}
+.flogo-mark{width:34px;height:34px;background:var(--red);border-radius:2px;display:flex;align-items:center;justify-content:center}
+.flogo-mark svg{width:22px;height:22px}
+.flogo-name strong{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;color:var(--white);display:block;line-height:1}
+.flogo-name span{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+footer p{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.04em}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:up .5s ease both}
+
+@media(max-width:880px){
+  nav{padding:0 1.2rem}nav ul{display:none}
+  .hero{grid-template-columns:1fr;padding:3rem 1.4rem}
+  .hero-panel,.hero-panel-bar,.hero-vis{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .home-section{padding:3.5rem 1.4rem}
+  #why-section,#contact-section{grid-template-columns:1fr;gap:2.5rem}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .tile-grid{grid-template-columns:1fr}
+  .tile:nth-child(2),.tile:nth-child(4){margin-top:0}
+  .row2{grid-template-columns:1fr}
+  .prod-hero{padding:2rem 1.4rem}
+  .cat-tabs{padding:0 1.4rem}
+  .cat-panel{padding:2rem 1.4rem}
+  footer{flex-direction:column;text-align:center;padding:1.5rem}
+  .prod-table{font-size:.8rem}
+  .prod-table td,.prod-table th{padding:.7rem .8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-area" onclick="showPage('home')">
+    <div class="logo-mark">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M2 6H9Q16 6 16 16Q16 26 9 26H2Z" fill="white"/>
+        <path d="M5 10H9Q12 10 12 16Q12 22 9 22H5Z" fill="var(--red)"/>
+        <rect x="18" y="10" width="4" height="16" rx="1" fill="white"/>
+        <rect x="16" y="14" width="8" height="2" rx="1" fill="white"/>
+        <rect x="16" y="18" width="8" height="2" rx="1" fill="white"/>
+        <polygon points="20,4 23,6 23,10 20,12 17,10 17,6" fill="white"/>
+        <polygon points="20,6 22,7 22,9 20,10 18,9 18,7" fill="var(--red)"/>
+        <rect x="26" y="6" width="6" height="3" rx="1" fill="white"/>
+        <rect x="26" y="6" width="3" height="20" rx="1" fill="white"/>
+        <rect x="26" y="15" width="5" height="3" rx="1" fill="white"/>
+      </svg>
+    </div>
+    <div class="logo-name">
+      <strong>Dawood Industrial Fasteners</strong>
+      <span>Private Limited</span>
+    </div>
+  </div>
+  <ul>
+    <li><a onclick="showPage('products')">Products</a></li>
+    <li><a onclick="showPage('home'); setTimeout(()=>scrollTo('#why-section'),300)">Why Us</a></li>
+    <li><a onclick="showPage('home'); setTimeout(()=>scrollTo('#ind-section'),300)">Industries</a></li>
+    <li><a onclick="showPage('home'); setTimeout(()=>scrollTo('#contact-section'),300)" class="nav-btn">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- =================== HOME PAGE =================== -->
+<div id="home-page" class="page active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-panel"></div>
+    <div class="hero-panel-bar"></div>
+    <div class="hero-content">
+      <div class="eyebrow">Precision Manufacturing · Private Limited</div>
+      <h1>Built To<br><span class="r">Hold</span><br>Everything</h1>
+      <p class="hero-desc">Dawood Industrial Fasteners Pvt. Ltd. manufactures high-strength bolts, nuts, axles, and custom fastening solutions trusted by engineers across construction, automotive, and heavy industry.</p>
+      <div class="btns">
+        <button class="btn btn-r" onclick="showPage('products')">View Products</button>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <svg viewBox="0 0 330 330" fill="none">
+        <circle cx="165" cy="165" r="150" stroke="var(--red-dim)" stroke-width="1.5"/>
+        <circle cx="165" cy="165" r="114" stroke="var(--red-dim)" stroke-width="1" stroke-dasharray="4 7"/>
+        <line x1="15" y1="165" x2="315" y2="165" stroke="var(--red-dim)"/>
+        <line x1="165" y1="15" x2="165" y2="315" stroke="var(--red-dim)"/>
+        <line x1="57" y1="57" x2="273" y2="273" stroke="rgba(192,21,15,.05)"/>
+        <line x1="273" y1="57" x2="57" y2="273" stroke="rgba(192,21,15,.05)"/>
+        <polygon points="165,72 221,104 221,168 165,200 109,168 109,104" fill="rgba(192,21,15,.06)" stroke="var(--red)" stroke-width="2.5"/>
+        <polygon points="165,85 213,112 213,162 165,189 117,162 117,112" fill="var(--off)" stroke="rgba(192,21,15,.14)" stroke-width="1"/>
+        <text x="165" y="142" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="22" fill="var(--red)" letter-spacing="3" opacity=".6">DIF</text>
+        <circle cx="165" cy="155" r="18" fill="none" stroke="rgba(192,21,15,.3)" stroke-width="1.5"/>
+        <circle cx="165" cy="155" r="5" fill="var(--red)" opacity=".7"/>
+        <rect x="153" y="200" width="24" height="62" fill="rgba(192,21,15,.1)" stroke="var(--red)" stroke-width="2"/>
+        <line x1="153" y1="212" x2="177" y2="212" stroke="var(--red)" stroke-width="1.5" opacity=".3"/>
+        <line x1="153" y1="222" x2="177" y2="222" stroke="var(--red)" stroke-width="1.5" opacity=".3"/>
+        <line x1="153" y1="232" x2="177" y2="232" stroke="var(--red)" stroke-width="1.5" opacity=".3"/>
+        <line x1="153" y1="242" x2="177" y2="242" stroke="var(--red)" stroke-width="1.5" opacity=".3"/>
+        <line x1="153" y1="252" x2="177" y2="252" stroke="var(--red)" stroke-width="1.5" opacity=".3"/>
+        <circle cx="165" cy="15" r="3" fill="rgba(192,21,15,.4)"/>
+        <circle cx="315" cy="165" r="3" fill="rgba(192,21,15,.4)"/>
+        <circle cx="165" cy="315" r="3" fill="rgba(192,21,15,.4)"/>
+        <circle cx="15" cy="165" r="3" fill="rgba(192,21,15,.4)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Product Variants</div></div>
+    <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Years Experience</div></div>
+    <div class="stat"><div class="stat-n">1,000+</div><div class="stat-l">Clients Served</div></div>
+    <div class="stat"><div class="stat-n">ISO</div><div class="stat-l">9001:2015 Certified</div></div>
+  </div>
+
+  <!-- WHY -->
+  <section class="home-section" id="why-section" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:var(--white)">
+    <div>
+      <div class="tag">Why Dawood</div>
+      <h2>Precision You<br>Can Count On</h2>
+      <p class="sub">Every fastener leaving our facility passes rigorous dimensional, mechanical, and coating inspection. Quality is not optional — it is our standard.</p>
+      <button class="btn btn-r" onclick="showPage('home'); setTimeout(()=>scrollTo('#contact-section'),300)">Talk to Our Team</button>
+    </div>
+    <div class="tile-grid">
+      <div class="tile"><div class="tile-icon">🏅</div><h4>ISO 9001:2015</h4><p>Certified quality management across every production line and inspection process.</p></div>
+      <div class="tile"><div class="tile-icon">🔬</div><h4>In-House Testing</h4><p>Tensile, hardness, impact, and coating thickness tested on every production batch.</p></div>
+      <div class="tile"><div class="tile-icon">⚡</div><h4>Fast Turnaround</h4><p>Standard orders dispatched within 5–7 working days. Urgent schedules accommodated.</p></div>
+      <div class="tile"><div class="tile-icon">📐</div><h4>Custom Capability</h4><p>In-house CNC and thread rolling for specials in any grade, size, and surface finish.</p></div>
+    </div>
+  </section>
+
+  <div class="hrule"></div>
+
+  <!-- INDUSTRIES -->
+  <section class="home-section" id="ind-section" style="background:var(--off)">
+    <div class="tag">Industries Served</div>
+    <h2>Trusted Across<br>Every Sector</h2>
+    <div class="ind-grid">
+      <div class="icard"><div class="icard-bg">🏗️</div><h3>Construction</h3><p>Structural steel, bridges, and civil works</p></div>
+      <div class="icard"><div class="icard-bg">🏍️</div><h3>Automotive</h3><p>Motorcycles, vehicles, and spare parts</p></div>
+      <div class="icard"><div class="icard-bg">⚙️</div><h3>Heavy Industry</h3><p>Machinery, equipment, and fabrication</p></div>
+      <div class="icard"><div class="icard-bg">⚡</div><h3>Power & Energy</h3><p>Power plants, transmission towers, renewables</p></div>
+    </div>
+  </section>
+
+  <div class="hrule"></div>
+
+  <!-- CONTACT -->
+  <section class="home-section" id="contact-section" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;background:var(--white)">
+    <div>
+      <div class="tag">Get In Touch</div>
+      <h2>Request a<br>Quote Today</h2>
+      <p class="sub">Tell us what you need and we'll respond with specifications, pricing, and lead times within 24 hours.</p>
+      <div class="cinfo">
+        <div class="ci"><div class="ci-icon">📞</div><div><h4>Phone / WhatsApp</h4><p>+92 332 210 7879</p></div></div>
+        <div class="ci"><div class="ci-icon">✉️</div><div><h4>Email</h4><p>Yahyadawood700@gmail.com</p></div></div>
+        <div class="ci"><div class="ci-icon">📍</div><div><h4>Location</h4><p>Pakistan</p></div></div>
+      </div>
+    </div>
+    <form class="cform" onsubmit="handleSubmit(event)">
+      <div class="row2">
+        <div class="fg"><label>Full Name</label><input type="text" placeholder="Ahmed Khan"></div>
+        <div class="fg"><label>Company</label><input type="text" placeholder="Your Company Ltd."></div>
+      </div>
+      <div class="row2">
+        <div class="fg"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="+92 300 000 0000"></div>
+      </div>
+      <div class="fg">
+        <label>Product Required</label>
+        <select>
+          <option value="">Select a product category</option>
+          <option>Hex Nuts (M5–M12)</option>
+          <option>Hex Bolts (M5–M12)</option>
+          <option>Flange Bolts (M5–M12)</option>
+          <option>Honda CD70 Axles</option>
+          <option>Washers</option>
+          <option>U Bolts</option>
+          <option>Custom Fasteners</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message / Specifications</label><textarea rows="4" placeholder="Describe your requirements — size, grade, quantity..."></textarea></div>
+      <button type="submit" class="btn btn-r" style="align-self:flex-start">Send Enquiry →</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="flogo">
+      <div class="flogo-mark">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M2 6H9Q16 6 16 16Q16 26 9 26H2Z" fill="white"/>
+          <path d="M5 10H9Q12 10 12 16Q12 22 9 22H5Z" fill="var(--red)"/>
+          <rect x="18" y="10" width="4" height="16" rx="1" fill="white"/>
+          <rect x="16" y="14" width="8" height="2" rx="1" fill="white"/>
+          <rect x="16" y="18" width="8" height="2" rx="1" fill="white"/>
+          <polygon points="20,4 23,6 23,10 20,12 17,10 17,6" fill="white"/>
+          <rect x="26" y="6" width="6" height="3" rx="1" fill="white"/>
+          <rect x="26" y="6" width="3" height="20" rx="1" fill="white"/>
+          <rect x="26" y="15" width="5" height="3" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="flogo-name"><strong>Dawood Industrial Fasteners</strong><span>Private Limited</span></div>
+    </div>
+    <p>© 2026 Dawood Industrial Fasteners Pvt. Ltd. · Yahyadawood700@gmail.com · +92 332 210 7879</p>
+  </footer>
+</div><!-- end home-page -->
+
+
+<!-- =================== PRODUCTS PAGE =================== -->
+<div id="products-page" class="page">
+
+  <div class="prod-hero">
+    <div class="tag" style="color:rgba(255,255,255,.7)">Dawood Industrial Fasteners</div>
+    <h1>Our Products</h1>
+    <p>High-strength fasteners and automotive components. Select a category below to explore our full range.</p>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="showCat('hex-nuts')">Hex Nuts</button>
+    <button class="cat-tab" onclick="showCat('hex-bolts')">Hex Bolts</button>
+    <button class="cat-tab" onclick="showCat('flange-bolts')">Flange Bolts</button>
+    <button class="cat-tab" onclick="showCat('axles')">Honda CD70 Axles</button>
+    <button class="cat-tab" onclick="showCat('washers')">Washers</button>
+    <button class="cat-tab" onclick="showCat('ubolts')">U Bolts</button>
+  </div>
+
+  <!-- HEX NUTS -->
+  <div class="cat-panel active fade-in" id="cat-hex-nuts">
+    <div class="cat-panel-title">Hex Nuts — M5 to M12</div>
+    <p class="cat-panel-desc">Standard hexagonal nuts manufactured to DIN 934 / ISO 4032. Available in carbon steel (zinc plated, hot-dip galvanized) and stainless steel 304/316. All sizes in stock.</p>
+    <table class="prod-table">
+      <thead><tr><th>Size</th><th>Thread Pitch</th><th>Width Across Flats</th><th>Height</th><th>Standard</th><th>Availability</th></tr></thead>
+      <tbody>
+        <tr><td>M5</td><td>0.8 mm</td><td>8 mm</td><td>4.7 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M6</td><td>1.0 mm</td><td>10 mm</td><td>5.2 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M7</td><td>1.0 mm</td><td>11 mm</td><td>5.5 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M8</td><td>1.25 mm</td><td>13 mm</td><td>6.8 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M10</td><td>1.5 mm</td><td>17 mm</td><td>8.4 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M12</td><td>1.75 mm</td><td>19 mm</td><td>10.8 mm</td><td>DIN 934</td><td><span class="avail">In Stock</span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem;font-size:.8rem;color:var(--muted)">* Also available: fine thread, stainless 304/316, nylon insert (nylock), and flange nuts on request.</p>
+  </div>
+
+  <!-- HEX BOLTS -->
+  <div class="cat-panel" id="cat-hex-bolts">
+    <div class="cat-panel-title">Hex Bolts — M5 to M12</div>
+    <p class="cat-panel-desc">Full and partial thread hex bolts to DIN 933 / DIN 931. Grade 4.8, 8.8, and 10.9 available. Carbon steel zinc plated as standard; hot-dip galvanized and stainless on request.</p>
+    <table class="prod-table">
+      <thead><tr><th>Size</th><th>Thread Pitch</th><th>Width Across Flats</th><th>Grade</th><th>Standard</th><th>Availability</th></tr></thead>
+      <tbody>
+        <tr><td>M5<div class="muted">Various lengths</div></td><td>0.8 mm</td><td>8 mm</td><td>4.8 / 8.8</td><td>DIN 933</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M6<div class="muted">Various lengths</div></td><td>1.0 mm</td><td>10 mm</td><td>4.8 / 8.8</td><td>DIN 933</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M7<div class="muted">Various lengths</div></td><td>1.0 mm</td><td>11 mm</td><td>4.8 / 8.8</td><td>DIN 933</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M8<div class="muted">Various lengths</div></td><td>1.25 mm</td><td>13 mm</td><td>4.8 / 8.8 / 10.9</td><td>DIN 933</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M10<div class="muted">Various lengths</div></td><td>1.5 mm</td><td>17 mm</td><td>4.8 / 8.8 / 10.9</td><td>DIN 931</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M12<div class="muted">Various lengths</div></td><td>1.75 mm</td><td>19 mm</td><td>4.8 / 8.8 / 10.9</td><td>DIN 931</td><td><span class="avail">In Stock</span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem;font-size:.8rem;color:var(--muted)">* Custom lengths available on order. Specify required length when enquiring.</p>
+  </div>
+
+  <!-- FLANGE BOLTS -->
+  <div class="cat-panel" id="cat-flange-bolts">
+    <div class="cat-panel-title">Flange Bolts — M5 to M12</div>
+    <p class="cat-panel-desc">Hex flange bolts with integrated washer flange to DIN 6921. The built-in flange distributes load and prevents loosening — ideal for automotive and machinery applications.</p>
+    <table class="prod-table">
+      <thead><tr><th>Size</th><th>Thread Pitch</th><th>Flange Dia.</th><th>Grade</th><th>Standard</th><th>Availability</th></tr></thead>
+      <tbody>
+        <tr><td>M5<div class="muted">Various lengths</div></td><td>0.8 mm</td><td>11.8 mm</td><td>8.8</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M6<div class="muted">Various lengths</div></td><td>1.0 mm</td><td>14.2 mm</td><td>8.8</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M7<div class="muted">Various lengths</div></td><td>1.0 mm</td><td>15.8 mm</td><td>8.8</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M8<div class="muted">Various lengths</div></td><td>1.25 mm</td><td>17.9 mm</td><td>8.8 / 10.9</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M10<div class="muted">Various lengths</div></td><td>1.5 mm</td><td>21.8 mm</td><td>8.8 / 10.9</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>M12<div class="muted">Various lengths</div></td><td>1.75 mm</td><td>26.0 mm</td><td>8.8 / 10.9</td><td>DIN 6921</td><td><span class="avail">In Stock</span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem;font-size:.8rem;color:var(--muted)">* Serrated flange variants available on request for enhanced vibration resistance.</p>
+  </div>
+
+  <!-- AXLES -->
+  <div class="cat-panel" id="cat-axles">
+    <div class="cat-panel-title">Honda CD70 Axles</div>
+    <p class="cat-panel-desc">Precision-machined front, rear, and centre axles for the Honda CD70 motorcycle. Manufactured from high-grade steel with tight tolerances for a perfect OEM-spec fit. Individually inspected before dispatch.</p>
+    <div class="prod-cards">
+      <div class="prod-card">
+        <h4>🏍️ Front Axle — CD70</h4>
+        <p>Front wheel axle for Honda CD70. Machined to OEM specifications with chrome finish. Includes nut.</p>
+        <div class="specs">
+          <span class="spec-tag">OEM Spec</span>
+          <span class="spec-tag">Chrome Finish</span>
+          <span class="spec-tag">High-Grade Steel</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+      <div class="prod-card">
+        <h4>🏍️ Rear Axle — CD70</h4>
+        <p>Rear wheel axle for Honda CD70. Full-length threaded end with castellated nut and split pin. Heavy-duty grade.</p>
+        <div class="specs">
+          <span class="spec-tag">Threaded End</span>
+          <span class="spec-tag">With Nut & Pin</span>
+          <span class="spec-tag">High-Grade Steel</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+      <div class="prod-card">
+        <h4>🏍️ Centre Axle — CD70</h4>
+        <p>Centre/engine axle for Honda CD70 drivetrain. Precision ground for smooth fitment and long service life.</p>
+        <div class="specs">
+          <span class="spec-tag">Precision Ground</span>
+          <span class="spec-tag">OEM Fit</span>
+          <span class="spec-tag">High-Grade Steel</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:var(--muted)">* Bulk orders welcome. Contact us for wholesale pricing on CD70 axle sets.</p>
+  </div>
+
+  <!-- WASHERS -->
+  <div class="cat-panel" id="cat-washers">
+    <div class="cat-panel-title">Washers</div>
+    <p class="cat-panel-desc">A full range of washers to suit every fastening application. Plain, spring, and structural grades available in carbon steel and stainless steel, zinc plated as standard.</p>
+    <table class="prod-table">
+      <thead><tr><th>Type</th><th>Sizes Available</th><th>Material</th><th>Standard</th><th>Availability</th></tr></thead>
+      <tbody>
+        <tr><td>Plain / Flat Washer<div class="muted">Standard duty</div></td><td>M5 – M12 & beyond</td><td>Carbon Steel, SS304</td><td>DIN 125A</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>Large OD Washer<div class="muted">Wide load distribution</div></td><td>M5 – M12 & beyond</td><td>Carbon Steel</td><td>DIN 9021</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>Spring Washer<div class="muted">Vibration resistant</div></td><td>M5 – M12 & beyond</td><td>Carbon Steel</td><td>DIN 127</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>Nord-Lock Washer<div class="muted">Anti-loosening</div></td><td>M6 – M12</td><td>Stainless 316</td><td>NL Series</td><td><span class="avail">In Stock</span></td></tr>
+        <tr><td>Structural Washer<div class="muted">Heavy construction</div></td><td>M10 – M24</td><td>Carbon Steel HDG</td><td>F436</td><td><span class="avail">In Stock</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- U BOLTS -->
+  <div class="cat-panel" id="cat-ubolts">
+    <div class="cat-panel-title">U Bolts</div>
+    <p class="cat-panel-desc">Standard and custom U bolts for pipe clamping, vehicle suspensions, and structural applications. Available in round bend, square bend, and semi-round profiles. Supplied with two hex nuts and washers.</p>
+    <div class="prod-cards">
+      <div class="prod-card">
+        <h4>🔩 Round Bend U Bolt</h4>
+        <p>For circular pipe and tube clamping. Sizes from M6 to M16 thread diameter. Custom pipe OD on request.</p>
+        <div class="specs">
+          <span class="spec-tag">M6 – M16</span>
+          <span class="spec-tag">Zinc Plated</span>
+          <span class="spec-tag">With Nuts</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+      <div class="prod-card">
+        <h4>🔩 Square Bend U Bolt</h4>
+        <p>For square section tubing, chassis, and structural steel applications. Custom dimensions available.</p>
+        <div class="specs">
+          <span class="spec-tag">M6 – M16</span>
+          <span class="spec-tag">Zinc Plated</span>
+          <span class="spec-tag">Custom Sizes</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+      <div class="prod-card">
+        <h4>🔩 Suspension U Bolt</h4>
+        <p>Heavy-duty U bolts for vehicle leaf spring and axle clamping. High-tensile grade 8.8 as standard.</p>
+        <div class="specs">
+          <span class="spec-tag">Grade 8.8</span>
+          <span class="spec-tag">HDG Available</span>
+          <span class="spec-tag">Automotive</span>
+          <span class="spec-tag">In Stock</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:var(--muted)">* All U bolts supplied with 2 hex nuts and flat washers as standard. Custom leg length, thread length, and bend radius available on order.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="flogo">
+      <div class="flogo-mark">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M2 6H9Q16 6 16 16Q16 26 9 26H2Z" fill="white"/>
+          <path d="M5 10H9Q12 10 12 16Q12 22 9 22H5Z" fill="var(--red)"/>
+          <rect x="18" y="10" width="4" height="16" rx="1" fill="white"/>
+          <rect x="16" y="14" width="8" height="2" rx="1" fill="white"/>
+          <rect x="16" y="18" width="8" height="2" rx="1" fill="white"/>
+          <polygon points="20,4 23,6 23,10 20,12 17,10 17,6" fill="white"/>
+          <rect x="26" y="6" width="6" height="3" rx="1" fill="white"/>
+          <rect x="26" y="6" width="3" height="20" rx="1" fill="white"/>
+          <rect x="26" y="15" width="5" height="3" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="flogo-name"><strong>Dawood Industrial Fasteners</strong><span>Private Limited</span></div>
+    </div>
+    <p>© 2026 Dawood Industrial Fasteners Pvt. Ltd. · Yahyadawood700@gmail.com · +92 332 210 7879</p>
+  </footer>
+
+</div><!-- end products-page -->
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(name + '-page').classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({behavior: 'smooth'});
+}
+
+function showCat(cat) {
+  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('cat-' + cat);
+  if (panel) { panel.classList.add('active'); panel.classList.add('fade-in'); }
+  event.target.classList.add('active');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Enquiry Sent!';
+  btn.style.background = '#1a7a3a';
+  setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
+}
+</script>
+</body>
+</html>
